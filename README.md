@@ -4,6 +4,8 @@ File Utility for Fusion 360
 
 Need documentation
 
+Only supports parts for now.
+
 ## License
 Samples are licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
