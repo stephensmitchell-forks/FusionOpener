@@ -3,6 +3,7 @@ import adsk.fusion
 import traceback
 
 import time
+import os
 
 from .Fusion360Utilities.Fusion360Utilities import AppObjects
 from .Fusion360Utilities.Fusion360CommandBase import Fusion360CommandBase
@@ -144,8 +145,10 @@ class Demo1Command(Fusion360CommandBase):
         #                  "files (*.prt, *.asm, *.sldprt, *.sldasm);;STEP files (*.ste, *.step, *.stp);;STL files (" \
         #                  "*.stl);;SketchUp files (*.sku) "
 
-        fileDlg.initialDirectory = '/Users/rainsbp/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/FusionOpener/Samples/'
-
+        # fileDlg.initialDirectory = '/Users/rainsbp/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/FusionOpener/Samples/'
+        directory = os.path.dirname(os.path.realpath(__file__))
+        directory = os.path.join(directory, 'Samples')
+        fileDlg.initialDirectory = directory
         dlgResult = fileDlg.showOpen()
         if dlgResult == adsk.core.DialogResults.DialogOK:
             file_name = fileDlg.filename
