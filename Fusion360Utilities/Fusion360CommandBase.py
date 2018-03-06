@@ -74,7 +74,9 @@ def command_definition_by_id(cmd_id, ui):
 # Find command control by id in nav bar
 def cmd_control_in_nav_bar(cmd_id, ui):
     toolbars_ = ui.toolbars
-    nav_toolbar = toolbars_.itemById('NavToolbar')
+
+    #######********MODIFIED FOR THIS VERSION ONLY****************
+    nav_toolbar = toolbars_.itemById('QAT')
     nav_toolbar_controls = nav_toolbar.controls
     cmd_control = nav_toolbar_controls.itemById(cmd_id)
 
@@ -139,7 +141,8 @@ def get_controls(command_in_nav_bar, workspace, toolbar_panel_id, ui):
     if command_in_nav_bar:
 
         toolbars_ = ui.toolbars
-        nav_bar = toolbars_.itemById('NavToolbar')
+        #######********MODIFIED FOR THIS VERSION ONLY****************
+        nav_bar = toolbars_.itemById('QAT')
         controls = nav_bar.controls
 
     # Get Controls from a workspace panel
@@ -239,7 +242,8 @@ class Fusion360CommandBase:
                 cmd_definition.commandCreated.add(on_command_created_handler)
                 handlers.append(on_command_created_handler)
 
-                new_control = controls_to_add_to.addCommand(cmd_definition)
+                #######********MODIFIED FOR THIS VERSION ONLY****************
+                new_control = controls_to_add_to.addCommand(cmd_definition, 'NewDocumentCommand', True)
 
                 if self.command_visible:
                     new_control.isVisible = True
@@ -249,7 +253,9 @@ class Fusion360CommandBase:
                 if self.command_promoted:
                     new_control.isPromoted = True
                 else:
-                    new_control.isPromoted = False
+                    #######********MODIFIED FOR THIS VERSION ONLY****************
+                    pass
+                    # new_control.isPromoted = False
 
 
         except:

@@ -20,6 +20,21 @@ cmd = {
 }
 command_definitions.append(cmd)
 
+# Define parameters for 1st command
+cmd = {
+    'cmd_name': 'Open',
+    'cmd_description': 'Open a file',
+    'cmd_id': 'cmdID_Opener_Open_QAT',
+    'cmd_resources': './resources',
+    'workspace': 'FusionSolidEnvironment',
+    'cmd_resources': '',
+    'command_in_nav_bar': True,
+    'add_to_drop_down': True,
+    'drop_down_cmd_id': 'FileSubMenuCommand',
+    'class': Demo1Command
+}
+command_definitions.append(cmd)
+
 # # Define parameters for 2nd command
 # cmd = {
 #     'cmd_name': 'Fusion Demo Command 2',
