@@ -15,6 +15,28 @@ upload_max = 1000
 assembly = False
 
 
+def check_local_import(file_name_local):
+    ao = AppObjects()
+
+    extension = os.path.splitext(file_name_local)[1].lower()
+
+    if extension in ['.igs', '.iges', '.ige']:
+        import_options = ao.import_manager.createIGESImportOptions(file_name_local)
+    elif extension in ['.f3d']:
+        import_options = ao.import_manager.createFusionArchiveImportOptions(file_name_local)
+    elif extension in ['.sab', '.sat']:
+        import_options = ao.import_manager.createSATImportOptions(file_name_local)
+    elif extension in ['.smb', '.smt']:
+        import_options = ao.import_manager.createSMTImportOptions(file_name_local)
+    elif extension in ['.stp', '.step', '.ste']:
+        import_options = ao.import_manager.createSTEPImportOptions(file_name_local)
+    else:
+        return False
+
+    ao.import_manager.importToNewDocument(import_options)
+    return True
+
+
 # Class for a Fusion 360 Command
 # Place your program logic here
 # Delete the line that says "pass" for any method you want to use
@@ -61,6 +83,9 @@ class Demo1Command(Fusion360CommandBase):
 
         # file_name = '/Users/rainsbp/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/FusionOpener/Samples/ADSK_BOX.f3d'
         # file_name = '/Users/rainsbp/Library/Application Support/Autodesk/Autodesk Fusion 360/API/AddIns/FusionOpener/Samples/SMD Resistor - 100 ohm.SLDPRT'
+
+        if check_local_import(file_name):
+            return
 
         ao = AppObjects()
         active_project = ao.app.data.activeProject
