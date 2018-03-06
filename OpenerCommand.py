@@ -40,7 +40,7 @@ def check_local_import(file_name_local):
 # Class for a Fusion 360 Command
 # Place your program logic here
 # Delete the line that says "pass" for any method you want to use
-class Demo1Command(Fusion360CommandBase):
+class OpenerCommand(Fusion360CommandBase):
     # Run whenever a user makes any change to a value or selection in the addin UI
     # Commands in here will be run through the Fusion processor and changes will be reflected in  Fusion graphics area
     def on_preview(self, command: adsk.core.Command, inputs: adsk.core.CommandInputs, args, input_values):
@@ -93,7 +93,7 @@ class Demo1Command(Fusion360CommandBase):
 
         # Set styles of progress dialog.
         progress_dialog = ao.ui.createProgressDialog()
-        progress_dialog.cancelButtonText = 'Cancel'
+        progress_dialog.cancelButtonText = 'Upload in Background'
         progress_dialog.isBackgroundTranslucent = False
         progress_dialog.isCancelButtonShown = True
         progress_dialog.message = 'Uploading: %v secs'
@@ -118,6 +118,9 @@ class Demo1Command(Fusion360CommandBase):
         while data_future.uploadState == adsk.core.UploadStates.UploadProcessing and test <= upload_max:
             # If progress dialog is cancelled, stop drawing.
             if progress_dialog.wasCancelled:
+                ao.ui.messageBox('Your file is still uploading to Fusion Team. \n'
+                                 'You can find it in the data panel in the current project\'s root folder '
+                                 'when it completes')
                 break
             # Update progress value of progress dialog
 
@@ -147,7 +150,8 @@ class Demo1Command(Fusion360CommandBase):
             document = None
             progress_dialog.progressValue = time_out
             progress_dialog.message = 'Converting: %v secs'
-            while document is None and time_out <= conversion_max:
+            # while document is None and time_out <= conversion_max:
+            while document is None:
                 try:
 
                     # ao.ui.messageBox('complete in '+ str(test) + ' secs and ' + str(time_out) + ' conversion attempts')
@@ -167,8 +171,8 @@ class Demo1Command(Fusion360CommandBase):
 
             progress_dialog.hide()
 
-        else:
-            ao.ui.messageBox('Never Finished in ' + str(test) + ' secs')
+        # else:
+        #     ao.ui.messageBox('Never Finished in ' + str(test) + ' secs')
 
 
 

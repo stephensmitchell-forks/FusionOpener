@@ -242,8 +242,11 @@ class Fusion360CommandBase:
                 cmd_definition.commandCreated.add(on_command_created_handler)
                 handlers.append(on_command_created_handler)
 
-                #######********MODIFIED FOR THIS VERSION ONLY****************
-                new_control = controls_to_add_to.addCommand(cmd_definition, 'NewDocumentCommand', True)
+                if self.add_to_drop_down:
+                    #######********MODIFIED FOR THIS VERSION ONLY****************
+                    new_control = controls_to_add_to.addCommand(cmd_definition, 'NewDocumentCommand', True)
+                else:
+                    new_control = controls_to_add_to.addCommand(cmd_definition, 'FileSubMenuCommand', False)
 
                 if self.command_visible:
                     new_control.isVisible = True

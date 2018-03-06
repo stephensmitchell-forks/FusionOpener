@@ -1,37 +1,49 @@
 # Importing sample Fusion Command
 # Could import multiple Command definitions here
-from .Demo1Command import Demo1Command
+from .OpenerCommand import OpenerCommand
 from .Demo2Command import Demo2Command
 from .DemoPaletteCommand import DemoPaletteShowCommand, DemoPaletteSendCommand
 
 commands = []
 command_definitions = []
 
+# # Define parameters for 1st command
+# cmd = {
+#     'cmd_name': 'Open',
+#     'cmd_description': 'Open a file',
+#     'cmd_id': 'cmdID_Opener_Open',
+#     'cmd_resources': './resources',
+#     'workspace': 'FusionSolidEnvironment',
+#     'toolbar_panel_id': 'Opener',
+#     'command_promoted': True,
+#     'class': OpenerCommand
+# }
+# command_definitions.append(cmd)
+
 # Define parameters for 1st command
 cmd = {
     'cmd_name': 'Open',
-    'cmd_description': 'Open a file',
-    'cmd_id': 'cmdID_Opener_Open',
-    'cmd_resources': './resources',
+    'cmd_description': 'Open (Import) a file',
+    'cmd_id': 'cmdID_Opener_Open_QAT_menu',
     'workspace': 'FusionSolidEnvironment',
-    'toolbar_panel_id': 'Opener',
-    'command_promoted': True,
-    'class': Demo1Command
+    'cmd_resources': '',
+    'command_in_nav_bar': True,
+    'add_to_drop_down': True,
+    'drop_down_cmd_id': 'FileSubMenuCommand',
+    'class': OpenerCommand
 }
 command_definitions.append(cmd)
 
 # Define parameters for 1st command
 cmd = {
     'cmd_name': 'Open',
-    'cmd_description': 'Open a file',
+    'cmd_description': 'Open (Import) a file',
     'cmd_id': 'cmdID_Opener_Open_QAT',
-    'cmd_resources': './resources',
     'workspace': 'FusionSolidEnvironment',
-    'cmd_resources': '',
+    'cmd_resources': './resources',
     'command_in_nav_bar': True,
-    'add_to_drop_down': True,
-    'drop_down_cmd_id': 'FileSubMenuCommand',
-    'class': Demo1Command
+
+    'class': OpenerCommand
 }
 command_definitions.append(cmd)
 
